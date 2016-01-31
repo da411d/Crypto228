@@ -4,6 +4,5 @@ Crypto228 - моя простенька шифрувальна бібліоте�
 
 ```
 _crypt('SecretTextForEncoding', 'SecretKey'); //Шифруєм
-_decrypt('1U2MiN2N0YDZ5YDN3ATZkRGZwUGN5kzN5czYzYGZxYWN1MjZjNGM1U2M1ITM3cTYmRmZlBTOyUDNiBjY5czYzYGZ3MDMwYDNiZTZmhTM5UDN0EWMiJjZkhDZ3UjYjFDM4ADOxczNyUDNiBjYzYGZiZmZyUDNiBjY5UGZkFDOyUDNiBjY3AzMwIWN3MDMwYDNjNDMiJTYyUDNiBjYjNGM1U2MlVzNmJGN
-', 'SecretKey');	//Розшифровуєм
+_decrypt('1x4TRGFGezd0s1lixWGCWG04ezd0qDC0ezd0MH38ezd0oM8b3g1cvyUCTcmv0x/FxWGCLjQ0ezd0ZQx98mjeRGFGU6Y+LjQ0VecdJizmyv3WOKCn', 'SecretKey');	//Розшифровуєм
 ```
