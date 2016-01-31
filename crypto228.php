@@ -12,7 +12,7 @@ function _crypt($unencoded, $key){
 
 function _decrypt($encoded, $key){
 	$encoded = bin2hex(base64_decode($encoded));
-	$strofsym="qwertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPASDFGHJKLZXCVBNM=";
+	$strofsym="qwertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPASDFGHJKLZXCVBNM=+/";
 	for($i=0;$i<strlen($strofsym);$i++){
 		$tmp = sha1(sha1($key.$strofsym[$i]).$key);
 		$encoded = str_replace(substr($tmp, 5, 6), $strofsym[$i], $encoded);
