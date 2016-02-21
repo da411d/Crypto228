@@ -2,6 +2,7 @@
 function _crypt($unencoded, $key){
 	$string=base64_encode($unencoded);
 	$arr=array();
+	$newstr = '';
 	for($i=0;$i<strlen($string);$i++){
 		$arr[$i] = sha1(sha1($key.$string[$i]).$key);
 		$newstr = $newstr.substr($arr[$i], 5, 6);
