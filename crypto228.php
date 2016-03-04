@@ -1,33 +1,42 @@
 <?
-function _crypt($string, $key){
-	$str = bin2hex($string);
-	$arr_str = str_split($str, 4);
+function _crypt($str, $key){
+	$encoded = bin2hex($str);
+	$encoded = str_split($encoded, 2);
 
-	$key = md5($key);
-
-	$encrypted =  '';
-
-	for($i=0;$i<count($arr_str);$i++){
-		$a = $arr_str[$i];
-		$b = md5(md5($i).md5($key));
-		$encrypted .=  bin2hex(pack('H*',$a) ^ pack('H*',$b));
+	$returnment = '';
+	foreach($encoded as $a){
+		$returnment .= bin2hex(pack('H*', $a)^pack('H*', substr(md5($key),0,2)));
 	}
-	return base64_encode(hex2bin($encrypted));
+	$returnment = hex2bin($returnment);
+	$returnment = base64_encode($returnment);
+
+	$returnment = str_replace('+', '-', $returnment);
+	$returnment = str_replace('/', '_', $returnment);
+
+	return $returnment;
 }
 
+function _decrypt($str, $key){
+	$str = str_replace('-', '+', $str);
+	$str = str_replace('_', '/', $str);
+	$str = base64_decode($str);
+	$str = bin2hex($str);
 
-function _decrypt($string, $key){
-	$str = bin2hex(base64_decode($string));
-	$arr_str = str_split($str, 4);
-	$key = md5($key);
-
-	$decrypted =  '';
-
-	for($i=0;$i<count($arr_str);$i++){
-		$a = $arr_str[$i];
-		$b = md5(md5($i).md5($key));
-		$decrypted .=  bin2hex(pack('H*',$a) ^ pack('H*',$b));
+	$returnment = '';
+	foreach(str_split($str, 2) as $a){
+		$returnment .= (
+			pack('H*', 
+				pack('H*', 
+					bin2hex($a)
+				)
+			)
+			^
+			pack('H*', 
+				pack('H*', 
+					bin2hex(substr(md5($key),0,2))
+				)
+			)
+		);
 	}
-	$decrypted = hex2bin($decrypted);
-	return $decrypted;
+	return $returnment;
 }
