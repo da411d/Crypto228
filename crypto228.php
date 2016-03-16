@@ -7,7 +7,7 @@ function _crypt($str='', $key=''){
 
 	$newkey = md5($key);
 	for($i=0;$i<1000;$i++){
-		$newkey = md5($newkey).substr(md5($newkey.$i), 6, 1);
+		$newkey = $newkey.substr(md5($newkey.$i), 6, 1);
 	}
 	$key = $newkey;
 
@@ -43,7 +43,7 @@ function _decrypt($str='', $key=''){
 
 	$newkey = md5($key);
 	for($i=0;$i<1000;$i++){
-		$newkey = md5($newkey).substr(md5($newkey.$i), 6, 1);
+		$newkey = $newkey.substr(md5($newkey.$i), 6, 1);
 	}
 	$key = $newkey;
 
